@@ -1,4 +1,4 @@
-package io.github.rz.demo.controllers.request;
+package io.github.rz.demo.controllers.requests;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
