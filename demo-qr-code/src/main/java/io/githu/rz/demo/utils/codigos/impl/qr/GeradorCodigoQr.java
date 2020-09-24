@@ -20,7 +20,7 @@ import io.github.rz.demo.excecoes.GeracaoCodigoException;
 public class GeradorCodigoQr<T> implements IGeradorCodigo<T> {
 
 	private final String FORMATACAO_PADRAO_QR_CODE = "ISO-8859-1";
-	private final String TAMANHO_MARGEM_QR_CODE = "15";
+	private final String TAMANHO_MARGEM_QR_CODE = "3";
 	
 	private final String MSG_ERRO_GERACAO_CODIGO_QR = "Erro ao gerar o código Qr: %s";
 	private final String MSG_ERRO_CONVERSAO_CODIGO_QR = "Erro ao converter o código Qr para Base64: %s";
