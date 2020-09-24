@@ -20,30 +20,24 @@ import io.github.rz.demo.excecoes.GeracaoCodigoException;
 public class GeradorCodigoQr<T> implements IGeradorCodigo<T> {
 
 	private final String FORMATACAO_PADRAO_QR_CODE = "ISO-8859-1";
-	// TODO: Pegar dinamicamente por parâmetro no builder
-	private final String FORMATO_IMAGEM_QR_CODE = "png";
-	
-	// TODO: Pegar dinamicamente por parâmetro no builder
-	private final Integer ALTURA_PADRAO = 100;
-	private final Integer LARGURA_PADRAO = 100;
 	
 	private final String MSG_ERRO_GERACAO_CODIGO_QR = "Erro ao gerar o código Qr: %s";
 	private final String MSG_ERRO_CONVERSAO_CODIGO_QR = "Erro ao converter o código Qr para Base64: %s";
 	
 	@Override
-	public String criarCodigoBase64(T dados) {
+	public String criarCodigoBase64(T dados, Integer altura, Integer largura, String formato) {
 		Hashtable<EncodeHintType, String> parametrosWriter = montarConfiguracaoWriter();
 		String conteudo = converterDados(dados);
 		
 		BitMatrix matrizCodigoGerada;
 		try {
 			QRCodeWriter writer = new QRCodeWriter();
-			matrizCodigoGerada = writer.encode(conteudo, BarcodeFormat.QR_CODE, LARGURA_PADRAO, ALTURA_PADRAO, parametrosWriter);
+			matrizCodigoGerada = writer.encode(conteudo, BarcodeFormat.QR_CODE, largura, altura, parametrosWriter);
 		} catch (WriterException ex) {
 			throw new GeracaoCodigoException(String.format(MSG_ERRO_GERACAO_CODIGO_QR, ex.getMessage()));
 		}
 		
-		String codigoQrBase64 = converterMatrizBitsImagem(matrizCodigoGerada);
+		String codigoQrBase64 = converterMatrizBitsImagem(matrizCodigoGerada, formato);
 		return codigoQrBase64;
 	}
 	
@@ -60,11 +54,11 @@ public class GeradorCodigoQr<T> implements IGeradorCodigo<T> {
 		return conversorJson.toJson(dados);
 	}
 	
-	private String converterMatrizBitsImagem(BitMatrix matriz) {
+	private String converterMatrizBitsImagem(BitMatrix matriz, String formatoImagem) {
 		ByteArrayOutputStream streamImagemBytes = new ByteArrayOutputStream();   
 		
 		try {
-			MatrixToImageWriter.writeToStream(matriz, FORMATO_IMAGEM_QR_CODE, streamImagemBytes);
+			MatrixToImageWriter.writeToStream(matriz, formatoImagem, streamImagemBytes);
 			streamImagemBytes.close();
 		} catch (IOException ex) {
 			throw new GeracaoCodigoException(String.format(MSG_ERRO_CONVERSAO_CODIGO_QR, ex.getMessage()));
