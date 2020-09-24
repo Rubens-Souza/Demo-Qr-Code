@@ -20,6 +20,7 @@ public class ManipuladorCodigosQr<T> implements IManipuladorCodigos<T> {
 		leitor = new LeitorCodigoQr<T>();
 	}
 	
+	// TODO: Aterar gerar codigo para ser um builder pattern
 	@Override
 	public String gerarCodigo(T dados) {
 		return gerador.criarCodigoBase64(dados, ALTURA_PADRAO, LARGURA_PADRAO, FORMATO_PADRAO_IMAGEM_QR_CODE.getFormato());
