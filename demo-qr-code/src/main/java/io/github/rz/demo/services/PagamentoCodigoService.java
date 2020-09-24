@@ -2,11 +2,11 @@ package io.github.rz.demo.services;
 
 import org.springframework.stereotype.Service;
 
-import io.githu.rz.demo.utils.codigos.IManipuladorCodigos;
-import io.githu.rz.demo.utils.codigos.enums.FormatoImagens;
-import io.githu.rz.demo.utils.codigos.impl.qr.ManipuladorCodigosQr;
 import io.github.rz.demo.dto.CodigoQrDTO;
 import io.github.rz.demo.dto.PagamentoDTO;
+import io.github.rz.demo.utils.codigos.IManipuladorCodigos;
+import io.github.rz.demo.utils.codigos.impl.qr.ManipuladorCodigosQr;
+import io.github.rz.demo.utils.enums.FormatoImagens;
 
 @Service
 public class PagamentoCodigoService {

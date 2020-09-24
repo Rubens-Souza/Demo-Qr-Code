@@ -1,4 +1,4 @@
-package io.githu.rz.demo.utils.codigos.impl.qr;
+package io.github.rz.demo.utils.codigos.impl.qr;
 
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
@@ -17,8 +17,8 @@ import com.google.zxing.Result;
 import com.google.zxing.client.j2se.BufferedImageLuminanceSource;
 import com.google.zxing.common.HybridBinarizer;
 
-import io.githu.rz.demo.utils.codigos.ILeitorCodigo;
 import io.github.rz.demo.excecoes.LeituraCodigoException;
+import io.github.rz.demo.utils.codigos.ILeitorCodigo;
 
 public class LeitorCodigoQr<T> implements ILeitorCodigo<T> {
 

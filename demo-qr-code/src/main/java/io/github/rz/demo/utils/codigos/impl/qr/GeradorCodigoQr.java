@@ -1,4 +1,4 @@
-package io.githu.rz.demo.utils.codigos.impl.qr;
+package io.github.rz.demo.utils.codigos.impl.qr;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -14,8 +14,8 @@ import com.google.zxing.common.BitMatrix;
 import com.google.zxing.qrcode.QRCodeWriter;
 import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel;
 
-import io.githu.rz.demo.utils.codigos.IGeradorCodigo;
 import io.github.rz.demo.excecoes.GeracaoCodigoException;
+import io.github.rz.demo.utils.codigos.IGeradorCodigo;
 
 public class GeradorCodigoQr<T> implements IGeradorCodigo<T> {
 

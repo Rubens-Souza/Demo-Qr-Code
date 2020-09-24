@@ -1,4 +1,4 @@
-package io.githu.rz.demo.utils.codigos;
+package io.github.rz.demo.utils.codigos;
 
 public interface ILeitorCodigo<T> {
 

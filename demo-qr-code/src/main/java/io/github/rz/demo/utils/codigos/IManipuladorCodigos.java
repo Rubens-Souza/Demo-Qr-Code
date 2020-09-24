@@ -1,6 +1,6 @@
-package io.githu.rz.demo.utils.codigos;
+package io.github.rz.demo.utils.codigos;
 
-import io.githu.rz.demo.utils.codigos.enums.FormatoImagens;
+import io.github.rz.demo.utils.enums.FormatoImagens;
 
 public interface IManipuladorCodigos<T> {
 

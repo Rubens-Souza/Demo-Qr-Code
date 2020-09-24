@@ -1,9 +1,9 @@
-package io.githu.rz.demo.utils.codigos.impl.qr;
+package io.github.rz.demo.utils.codigos.impl.qr;
 
-import io.githu.rz.demo.utils.codigos.IGeradorCodigo;
-import io.githu.rz.demo.utils.codigos.ILeitorCodigo;
-import io.githu.rz.demo.utils.codigos.IManipuladorCodigos;
-import io.githu.rz.demo.utils.codigos.enums.FormatoImagens;
+import io.github.rz.demo.utils.codigos.IGeradorCodigo;
+import io.github.rz.demo.utils.codigos.ILeitorCodigo;
+import io.github.rz.demo.utils.codigos.IManipuladorCodigos;
+import io.github.rz.demo.utils.enums.FormatoImagens;
 
 public class ManipuladorCodigosQr<T> implements IManipuladorCodigos<T> {
 

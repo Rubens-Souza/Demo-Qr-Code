@@ -1,4 +1,4 @@
-package io.githu.rz.demo.utils.codigos.enums;
+package io.github.rz.demo.utils.enums;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
