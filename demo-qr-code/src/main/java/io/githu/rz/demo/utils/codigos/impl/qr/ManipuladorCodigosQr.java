@@ -16,11 +16,11 @@ public class ManipuladorCodigosQr<T> implements IManipuladorCodigos<T> {
 	
 	@Override
 	public String gerarCodigo(T dados) {
-		return null;
+		return gerador.criarCodigoBase64(dados);
 	}
 
 	@Override
-	public T lerCodigo(String codigo) {
-		return null;
+	public T lerCodigo(String codigo,  Class<T> classeGerada) {
+		return leitor.lerCodigoBase64(codigo, classeGerada);
 	}
 }
