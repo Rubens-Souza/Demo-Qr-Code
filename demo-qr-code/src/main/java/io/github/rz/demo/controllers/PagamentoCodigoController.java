@@ -42,11 +42,21 @@ public class PagamentoCodigoController {
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
 		}
 	}
-	
+
 	@PostMapping("/lerCodigoPagamento")
 	@ApiOperation(value = "Busca as informações presentes em um código de pagamento")
 	public ResponseEntity<ResponseDTO<Object>> lerCodigoPagamento(RequestLerCodigoPagamento request) {
-		return null;	
+		ResponseDTO<Object> response;
+		try {
+			PagamentoDTO dadosPagamento = service.lerCodigoPagamento(request.getCodigoPagamentoBase64());
+			response = ResponseDTO.builder().sucessso(true).status(HttpStatus.OK.toString()).mensagem(StringUtils.EMPTY)
+					.resultado(dadosPagamento).build();
+			return ResponseEntity.ok(response);
+		} catch (Exception ex) {
+			response = ResponseDTO.builder().sucessso(false).status(HttpStatus.INTERNAL_SERVER_ERROR.toString())
+					.mensagem(ex.getMessage()).resultado(null).build();
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
+		}
 	}
 
 }
