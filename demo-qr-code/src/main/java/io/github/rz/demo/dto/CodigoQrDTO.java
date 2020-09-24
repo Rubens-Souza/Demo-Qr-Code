@@ -16,11 +16,7 @@ public class CodigoQrDTO {
 	private String imagemBase64;
 	private String formatoImagem;
 	
-	public CodigoQrDTO(String formatoImagem) {
-		this.formatoImagem = formatoImagem;
-	}
-	
-	private String getImagemComCabecalhoBase64() {
+	public String getImagemComCabecalhoBase64() {
 		String cabecalhoBase64 = getCabecalhoBase64();
 		return cabecalhoBase64 + imagemBase64;
 	}
