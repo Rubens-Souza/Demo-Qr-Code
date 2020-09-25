@@ -24,8 +24,20 @@ public class LeitorCodigoQr {
 	private final String MSG_ERRO_LEITURA_CODIGO_QR = "Erro ao ler dados no base64 do código QR: %s";
 	private final String MSG_ERRO_QR_NAO_IDENTIFICADO = "O código de barras no Qr code não pode ser corretamente identificado: %s";
 
+	public String lerCodigoBase64(String codigo) {
+		Result dados = lerCodigoQr(codigo);
+		return dados.getText();
+	}
+	
 	public <T> T lerCodigoBase64(String codigo, Class<T> classeGerada) {
-		String imagemFormatada = removerCabecalhoBase64(codigo);
+		Result dados = lerCodigoQr(codigo);
+		T dadosConvertidos = GsonUtils.parse(dados.getText(), classeGerada);
+		
+		return dadosConvertidos;
+	}
+	
+	private Result lerCodigoQr(String base64) {
+		String imagemFormatada = removerCabecalhoBase64(base64);
 		BinaryBitmap bitmapCodigoQr = converterBase64(imagemFormatada);
 
 		Result dados;
@@ -34,9 +46,8 @@ public class LeitorCodigoQr {
 		} catch (NotFoundException ex) {
 			throw new LeituraCodigoException(String.format(MSG_ERRO_QR_NAO_IDENTIFICADO, ex.getMessage()));
 		}
-
-		T dadosConvertidos = GsonUtils.parse(dados.getText(), classeGerada);
-		return dadosConvertidos;
+		
+		return dados;
 	}
 
 	private String removerCabecalhoBase64(String base64) {

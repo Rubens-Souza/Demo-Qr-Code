@@ -13,4 +13,9 @@ public class CodigoQr {
 		LeitorCodigoQr leitor = new LeitorCodigoQr();
 		return leitor.lerCodigoBase64(codigo, classeAlvo);
 	}
+	
+	public static String lerCodigo(String codigo) {
+		LeitorCodigoQr leitor = new LeitorCodigoQr();
+		return leitor.lerCodigoBase64(codigo);
+	}
 }
