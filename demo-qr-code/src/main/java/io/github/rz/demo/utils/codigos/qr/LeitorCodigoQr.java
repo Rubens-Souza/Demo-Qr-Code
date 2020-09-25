@@ -1,4 +1,4 @@
-package io.github.rz.demo.utils.codigos.impl.qr;
+package io.github.rz.demo.utils.codigos.qr;
 
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
@@ -8,7 +8,6 @@ import javax.imageio.ImageIO;
 
 import org.apache.commons.lang3.StringUtils;
 
-import com.google.gson.Gson;
 import com.google.zxing.BinaryBitmap;
 import com.google.zxing.LuminanceSource;
 import com.google.zxing.MultiFormatReader;
@@ -18,15 +17,14 @@ import com.google.zxing.client.j2se.BufferedImageLuminanceSource;
 import com.google.zxing.common.HybridBinarizer;
 
 import io.github.rz.demo.excecoes.LeituraCodigoException;
-import io.github.rz.demo.utils.codigos.ILeitorCodigo;
+import io.github.rz.demo.utils.GsonUtils;
 
-public class LeitorCodigoQr<T> implements ILeitorCodigo<T> {
+public class LeitorCodigoQr {
 
 	private final String MSG_ERRO_LEITURA_CODIGO_QR = "Erro ao ler dados no base64 do código QR: %s";
 	private final String MSG_ERRO_QR_NAO_IDENTIFICADO = "O código de barras no Qr code não pode ser corretamente identificado: %s";
 
-	@Override
-	public T lerCodigoBase64(String codigo, Class<T> classeGerada) {
+	public <T> T lerCodigoBase64(String codigo, Class<T> classeGerada) {
 		String imagemFormatada = removerCabecalhoBase64(codigo);
 		BinaryBitmap bitmapCodigoQr = converterBase64(imagemFormatada);
 
@@ -37,7 +35,7 @@ public class LeitorCodigoQr<T> implements ILeitorCodigo<T> {
 			throw new LeituraCodigoException(String.format(MSG_ERRO_QR_NAO_IDENTIFICADO, ex.getMessage()));
 		}
 
-		T dadosConvertidos = converterTextoCodigoQr(dados.getText(), classeGerada);
+		T dadosConvertidos = GsonUtils.parse(dados.getText(), classeGerada);
 		return dadosConvertidos;
 	}
 
@@ -61,10 +59,5 @@ public class LeitorCodigoQr<T> implements ILeitorCodigo<T> {
 		}
 
 		return bitmap;
-	}
-
-	private T converterTextoCodigoQr(String dadosCodigoQr, Class<T> classeGerada) {
-		Gson gson = new Gson();
-		return gson.fromJson(dadosCodigoQr, classeGerada);
 	}
 }
