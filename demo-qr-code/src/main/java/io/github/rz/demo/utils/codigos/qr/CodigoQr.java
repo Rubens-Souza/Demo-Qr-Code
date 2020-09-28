@@ -1,7 +1,5 @@
 package io.github.rz.demo.utils.codigos.qr;
 
-import io.github.rz.demo.utils.codigos.qr.GeradorCodigoQr.GeradorCodigoQrBuilder;
-
 public class CodigoQr {
 	
 	public static <T> GeradorCodigoQrBuilder<T> gerarCodigo(T dados) {
